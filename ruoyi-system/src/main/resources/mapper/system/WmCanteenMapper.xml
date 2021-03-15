@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.WmCanteenMapper">
+    
+    <resultMap type="WmCanteen" id="WmCanteenResult">
+        <result property="id"    column="id"    />
+        <result property="canteenId"    column="canteen_id"    />
+        <result property="retailerId"    column="retailer_id"    />
+        <result property="canteenName"    column="canteen_name"    />
+        <result property="city"    column="city"    />
+        <result property="canteenBusType"    column="canteen_bus_type"    />
+        <result property="deliveryArea"    column="delivery_area"    />
+        <result property="arpa"    column="arpa"    />
+        <result property="pushOrderNum"    column="push_order_num"    />
+        <result property="receiveOrderNum"    column="receive_order_num"    />
+        <result property="validOrderNum"    column="valid_order_num"    />
+        <result property="validOrderRate"    column="valid_order_rate"    />
+        <result property="complaintRate"    column="complaint_rate"    />
+        <result property="exceptionRate"    column="exception_rate"    />
+        <result property="shamOrderNum"    column="sham_order_num"    />
+        <result property="rejectOrderNum"    column="reject_order_num"    />
+        <result property="canteenCancelNum"    column="canteen_cancel_num"    />
+        <result property="userCancelNum"    column="user_cancel_num"    />
+        <result property="systemCancelNum"    column="system_cancel_num"    />
+        <result property="deliveryCancelExceptionNum"    column="delivery_cancel_exception_num"    />
+        <result property="entiretyTime"    column="entirety_time"    />
+        <result property="takeOrderTime"    column="take_order_time"    />
+        <result property="toShopTime"    column="to_shop_time"    />
+        <result property="getMealTime"    column="get_meal_time"    />
+        <result property="deliveryTime"    column="delivery_time"    />
+        <result property="canteenComplaintNum"    column="canteen_complaint_num"    />
+        <result property="userComplaintNum"    column="user_complaint_num"    />
+        <result property="lowCommentNum"    column="low_comment_num"    />
+        <result property="highCommentNum"    column="high_comment_num"    />
+        <result property="commentNum"    column="comment_num"    />
+        <result property="furthestOrderDistance"    column="furthest_order_distance"    />
+        <result property="furthestOrderAging"    column="furthest_order_aging"    />
+        <result property="furthestOrderTakeOrderAging"    column="furthest_order_take_order_aging"    />
+        <result property="furthestOrderToShopAging"    column="furthest_order_to_shop_aging"    />
+        <result property="furthestOrderGetMealAging"    column="furthest_order_get_meal_aging"    />
+        <result property="furthestOrderDeliveryAging"    column="furthest_order_delivery_aging"    />
+        <result property="furthestOrderCommentStar"    column="furthest_order_comment_star"    />
+    </resultMap>
+
+    <sql id="selectWmCanteenVo">
+        select id, canteen_id, retailer_id, canteen_name, city, canteen_bus_type, delivery_area, arpa, push_order_num, receive_order_num, valid_order_num, valid_order_rate, complaint_rate, exception_rate, sham_order_num, reject_order_num, canteen_cancel_num, user_cancel_num, system_cancel_num, delivery_cancel_exception_num, entirety_time, take_order_time, to_shop_time, get_meal_time, delivery_time, canteen_complaint_num, user_complaint_num, low_comment_num, high_comment_num, comment_num, furthest_order_distance, furthest_order_aging, furthest_order_take_order_aging, furthest_order_to_shop_aging, furthest_order_get_meal_aging, furthest_order_delivery_aging, furthest_order_comment_star from wm_canteen
+    </sql>
+
+    <select id="selectWmCanteenList" parameterType="WmCanteen" resultMap="WmCanteenResult">
+        <include refid="selectWmCanteenVo"/>
+        <where>  
+            <if test="canteenId != null "> and canteen_id = #{canteenId}</if>
+            <if test="retailerId != null "> and retailer_id = #{retailerId}</if>
+            <if test="canteenName != null  and canteenName != ''"> and canteen_name like concat('%', #{canteenName}, '%')</if>
+            <if test="canteenBusType != null  and canteenBusType != ''"> and canteen_bus_type = #{canteenBusType}</if>
+            <if test="furthestOrderAging != null "> and furthest_order_aging = #{furthestOrderAging}</if>
+            <if test="furthestOrderCommentStar != null "> and furthest_order_comment_star = #{furthestOrderCommentStar}</if>
+        </where>
+    </select>
+    
+    <select id="selectWmCanteenById" parameterType="Long" resultMap="WmCanteenResult">
+        <include refid="selectWmCanteenVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertWmCanteen" parameterType="WmCanteen" useGeneratedKeys="true" keyProperty="id">
+        insert into wm_canteen
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="canteenId != null">canteen_id,</if>
+            <if test="retailerId != null">retailer_id,</if>
+            <if test="canteenName != null">canteen_name,</if>
+            <if test="city != null">city,</if>
+            <if test="canteenBusType != null">canteen_bus_type,</if>
+            <if test="deliveryArea != null">delivery_area,</if>
+            <if test="arpa != null">arpa,</if>
+            <if test="pushOrderNum != null">push_order_num,</if>
+            <if test="receiveOrderNum != null">receive_order_num,</if>
+            <if test="validOrderNum != null">valid_order_num,</if>
+            <if test="validOrderRate != null">valid_order_rate,</if>
+            <if test="complaintRate != null">complaint_rate,</if>
+            <if test="exceptionRate != null">exception_rate,</if>
+            <if test="shamOrderNum != null">sham_order_num,</if>
+            <if test="rejectOrderNum != null">reject_order_num,</if>
+            <if test="canteenCancelNum != null">canteen_cancel_num,</if>
+            <if test="userCancelNum != null">user_cancel_num,</if>
+            <if test="systemCancelNum != null">system_cancel_num,</if>
+            <if test="deliveryCancelExceptionNum != null">delivery_cancel_exception_num,</if>
+            <if test="entiretyTime != null">entirety_time,</if>
+            <if test="takeOrderTime != null">take_order_time,</if>
+            <if test="toShopTime != null">to_shop_time,</if>
+            <if test="getMealTime != null">get_meal_time,</if>
+            <if test="deliveryTime != null">delivery_time,</if>
+            <if test="canteenComplaintNum != null">canteen_complaint_num,</if>
+            <if test="userComplaintNum != null">user_complaint_num,</if>
+            <if test="lowCommentNum != null">low_comment_num,</if>
+            <if test="highCommentNum != null">high_comment_num,</if>
+            <if test="commentNum != null">comment_num,</if>
+            <if test="furthestOrderDistance != null">furthest_order_distance,</if>
+            <if test="furthestOrderAging != null">furthest_order_aging,</if>
+            <if test="furthestOrderTakeOrderAging != null">furthest_order_take_order_aging,</if>
+            <if test="furthestOrderToShopAging != null">furthest_order_to_shop_aging,</if>
+            <if test="furthestOrderGetMealAging != null">furthest_order_get_meal_aging,</if>
+            <if test="furthestOrderDeliveryAging != null">furthest_order_delivery_aging,</if>
+            <if test="furthestOrderCommentStar != null">furthest_order_comment_star,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="canteenId != null">#{canteenId},</if>
+            <if test="retailerId != null">#{retailerId},</if>
+            <if test="canteenName != null">#{canteenName},</if>
+            <if test="city != null">#{city},</if>
+            <if test="canteenBusType != null">#{canteenBusType},</if>
+            <if test="deliveryArea != null">#{deliveryArea},</if>
+            <if test="arpa != null">#{arpa},</if>
+            <if test="pushOrderNum != null">#{pushOrderNum},</if>
+            <if test="receiveOrderNum != null">#{receiveOrderNum},</if>
+            <if test="validOrderNum != null">#{validOrderNum},</if>
+            <if test="validOrderRate != null">#{validOrderRate},</if>
+            <if test="complaintRate != null">#{complaintRate},</if>
+            <if test="exceptionRate != null">#{exceptionRate},</if>
+            <if test="shamOrderNum != null">#{shamOrderNum},</if>
+            <if test="rejectOrderNum != null">#{rejectOrderNum},</if>
+            <if test="canteenCancelNum != null">#{canteenCancelNum},</if>
+            <if test="userCancelNum != null">#{userCancelNum},</if>
+            <if test="systemCancelNum != null">#{systemCancelNum},</if>
+            <if test="deliveryCancelExceptionNum != null">#{deliveryCancelExceptionNum},</if>
+            <if test="entiretyTime != null">#{entiretyTime},</if>
+            <if test="takeOrderTime != null">#{takeOrderTime},</if>
+            <if test="toShopTime != null">#{toShopTime},</if>
+            <if test="getMealTime != null">#{getMealTime},</if>
+            <if test="deliveryTime != null">#{deliveryTime},</if>
+            <if test="canteenComplaintNum != null">#{canteenComplaintNum},</if>
+            <if test="userComplaintNum != null">#{userComplaintNum},</if>
+            <if test="lowCommentNum != null">#{lowCommentNum},</if>
+            <if test="highCommentNum != null">#{highCommentNum},</if>
+            <if test="commentNum != null">#{commentNum},</if>
+            <if test="furthestOrderDistance != null">#{furthestOrderDistance},</if>
+            <if test="furthestOrderAging != null">#{furthestOrderAging},</if>
+            <if test="furthestOrderTakeOrderAging != null">#{furthestOrderTakeOrderAging},</if>
+            <if test="furthestOrderToShopAging != null">#{furthestOrderToShopAging},</if>
+            <if test="furthestOrderGetMealAging != null">#{furthestOrderGetMealAging},</if>
+            <if test="furthestOrderDeliveryAging != null">#{furthestOrderDeliveryAging},</if>
+            <if test="furthestOrderCommentStar != null">#{furthestOrderCommentStar},</if>
+         </trim>
+    </insert>
+
+    <update id="updateWmCanteen" parameterType="WmCanteen">
+        update wm_canteen
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="canteenId != null">canteen_id = #{canteenId},</if>
+            <if test="retailerId != null">retailer_id = #{retailerId},</if>
+            <if test="canteenName != null">canteen_name = #{canteenName},</if>
+            <if test="city != null">city = #{city},</if>
+            <if test="canteenBusType != null">canteen_bus_type = #{canteenBusType},</if>
+            <if test="deliveryArea != null">delivery_area = #{deliveryArea},</if>
+            <if test="arpa != null">arpa = #{arpa},</if>
+            <if test="pushOrderNum != null">push_order_num = #{pushOrderNum},</if>
+            <if test="receiveOrderNum != null">receive_order_num = #{receiveOrderNum},</if>
+            <if test="validOrderNum != null">valid_order_num = #{validOrderNum},</if>
+            <if test="validOrderRate != null">valid_order_rate = #{validOrderRate},</if>
+            <if test="complaintRate != null">complaint_rate = #{complaintRate},</if>
+            <if test="exceptionRate != null">exception_rate = #{exceptionRate},</if>
+            <if test="shamOrderNum != null">sham_order_num = #{shamOrderNum},</if>
+            <if test="rejectOrderNum != null">reject_order_num = #{rejectOrderNum},</if>
+            <if test="canteenCancelNum != null">canteen_cancel_num = #{canteenCancelNum},</if>
+            <if test="userCancelNum != null">user_cancel_num = #{userCancelNum},</if>
+            <if test="systemCancelNum != null">system_cancel_num = #{systemCancelNum},</if>
+            <if test="deliveryCancelExceptionNum != null">delivery_cancel_exception_num = #{deliveryCancelExceptionNum},</if>
+            <if test="entiretyTime != null">entirety_time = #{entiretyTime},</if>
+            <if test="takeOrderTime != null">take_order_time = #{takeOrderTime},</if>
+            <if test="toShopTime != null">to_shop_time = #{toShopTime},</if>
+            <if test="getMealTime != null">get_meal_time = #{getMealTime},</if>
+            <if test="deliveryTime != null">delivery_time = #{deliveryTime},</if>
+            <if test="canteenComplaintNum != null">canteen_complaint_num = #{canteenComplaintNum},</if>
+            <if test="userComplaintNum != null">user_complaint_num = #{userComplaintNum},</if>
+            <if test="lowCommentNum != null">low_comment_num = #{lowCommentNum},</if>
+            <if test="highCommentNum != null">high_comment_num = #{highCommentNum},</if>
+            <if test="commentNum != null">comment_num = #{commentNum},</if>
+            <if test="furthestOrderDistance != null">furthest_order_distance = #{furthestOrderDistance},</if>
+            <if test="furthestOrderAging != null">furthest_order_aging = #{furthestOrderAging},</if>
+            <if test="furthestOrderTakeOrderAging != null">furthest_order_take_order_aging = #{furthestOrderTakeOrderAging},</if>
+            <if test="furthestOrderToShopAging != null">furthest_order_to_shop_aging = #{furthestOrderToShopAging},</if>
+            <if test="furthestOrderGetMealAging != null">furthest_order_get_meal_aging = #{furthestOrderGetMealAging},</if>
+            <if test="furthestOrderDeliveryAging != null">furthest_order_delivery_aging = #{furthestOrderDeliveryAging},</if>
+            <if test="furthestOrderCommentStar != null">furthest_order_comment_star = #{furthestOrderCommentStar},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteWmCanteenById" parameterType="Long">
+        delete from wm_canteen where id = #{id}
+    </delete>
+
+    <delete id="deleteWmCanteenByIds" parameterType="String">
+        delete from wm_canteen where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

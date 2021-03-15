@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.WmPoiMapper">
+    
+    <resultMap type="WmPoi" id="WmPoiResult">
+        <result property="id"    column="id"    />
+        <result property="rstId"    column="rst_id"    />
+        <result property="rstName"    column="rst_name"    />
+        <result property="rstType"    column="rst_type"    />
+        <result property="cityName"    column="city_name"    />
+        <result property="longitude"    column="longitude"    />
+        <result property="latitude"    column="latitude"    />
+        <result property="location"    column="location"    />
+        <result property="day30Cnt"    column="day_30_cnt"    />
+    </resultMap>
+
+    <sql id="selectWmPoiVo">
+        select id, rst_id, rst_name, rst_type, city_name, longitude, latitude, location, day_30_cnt from wm_poi
+    </sql>
+
+    <select id="selectWmPoiList" parameterType="WmPoi" resultMap="WmPoiResult">
+        <include refid="selectWmPoiVo"/>
+        <where>  
+            <if test="rstId != null "> and rst_id = #{rstId}</if>
+            <if test="rstName != null  and rstName != ''"> and rst_name like concat('%', #{rstName}, '%')</if>
+            <if test="rstType != null  and rstType != ''"> and rst_type = #{rstType}</if>
+            <if test="location != null  and location != ''"> and location like concat('%', #{location}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectWmPoiById" parameterType="Long" resultMap="WmPoiResult">
+        <include refid="selectWmPoiVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertWmPoi" parameterType="WmPoi" useGeneratedKeys="true" keyProperty="id">
+        insert into wm_poi
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="rstId != null">rst_id,</if>
+            <if test="rstName != null">rst_name,</if>
+            <if test="rstType != null">rst_type,</if>
+            <if test="cityName != null">city_name,</if>
+            <if test="longitude != null">longitude,</if>
+            <if test="latitude != null">latitude,</if>
+            <if test="location != null">location,</if>
+            <if test="day30Cnt != null">day_30_cnt,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="rstId != null">#{rstId},</if>
+            <if test="rstName != null">#{rstName},</if>
+            <if test="rstType != null">#{rstType},</if>
+            <if test="cityName != null">#{cityName},</if>
+            <if test="longitude != null">#{longitude},</if>
+            <if test="latitude != null">#{latitude},</if>
+            <if test="location != null">#{location},</if>
+            <if test="day30Cnt != null">#{day30Cnt},</if>
+         </trim>
+    </insert>
+
+    <update id="updateWmPoi" parameterType="WmPoi">
+        update wm_poi
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="rstId != null">rst_id = #{rstId},</if>
+            <if test="rstName != null">rst_name = #{rstName},</if>
+            <if test="rstType != null">rst_type = #{rstType},</if>
+            <if test="cityName != null">city_name = #{cityName},</if>
+            <if test="longitude != null">longitude = #{longitude},</if>
+            <if test="latitude != null">latitude = #{latitude},</if>
+            <if test="location != null">location = #{location},</if>
+            <if test="day30Cnt != null">day_30_cnt = #{day30Cnt},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteWmPoiById" parameterType="Long">
+        delete from wm_poi where id = #{id}
+    </delete>
+
+    <delete id="deleteWmPoiByIds" parameterType="String">
+        delete from wm_poi where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

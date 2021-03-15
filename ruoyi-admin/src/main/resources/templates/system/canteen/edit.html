@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('修改商户数据')" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-canteen-edit" th:object="${wmCanteen}">
+            <input name="id" th:field="*{id}" type="hidden">
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">平台餐厅ID：</label>
+                <div class="col-sm-8">
+                    <input name="canteenId" th:field="*{canteenId}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">(配送系统)餐厅ID：</label>
+                <div class="col-sm-8">
+                    <input name="retailerId" th:field="*{retailerId}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">餐厅名称：</label>
+                <div class="col-sm-8">
+                    <input name="canteenName" th:field="*{canteenName}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">城市：</label>
+                <div class="col-sm-8">
+                    <input name="city" th:field="*{city}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">商户业务：</label>
+                <div class="col-sm-8">
+                    <select name="canteenBusType" class="form-control m-b">
+                        <option value="">所有</option>
+                    </select>
+                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">配送范围：</label>
+                <div class="col-sm-8">
+                    <input name="deliveryArea" th:field="*{deliveryArea}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">客单价：</label>
+                <div class="col-sm-8">
+                    <input name="arpa" th:field="*{arpa}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">平台推单数：</label>
+                <div class="col-sm-8">
+                    <input name="pushOrderNum" th:field="*{pushOrderNum}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">商家接单数：</label>
+                <div class="col-sm-8">
+                    <input name="receiveOrderNum" th:field="*{receiveOrderNum}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">有效完成单数：</label>
+                <div class="col-sm-8">
+                    <input name="validOrderNum" th:field="*{validOrderNum}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">有效完成率：</label>
+                <div class="col-sm-8">
+                    <input name="validOrderRate" th:field="*{validOrderRate}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">投诉率：</label>
+                <div class="col-sm-8">
+                    <input name="complaintRate" th:field="*{complaintRate}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">异常率：</label>
+                <div class="col-sm-8">
+                    <input name="exceptionRate" th:field="*{exceptionRate}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">欺诈单数：</label>
+                <div class="col-sm-8">
+                    <input name="shamOrderNum" th:field="*{shamOrderNum}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">拒单数：</label>
+                <div class="col-sm-8">
+                    <input name="rejectOrderNum" th:field="*{rejectOrderNum}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">商户取消数：</label>
+                <div class="col-sm-8">
+                    <input name="canteenCancelNum" th:field="*{canteenCancelNum}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">客户取消数：</label>
+                <div class="col-sm-8">
+                    <input name="userCancelNum" th:field="*{userCancelNum}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">系统取消数：</label>
+                <div class="col-sm-8">
+                    <input name="systemCancelNum" th:field="*{systemCancelNum}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">配送异常数：</label>
+                <div class="col-sm-8">
+                    <input name="deliveryCancelExceptionNum" th:field="*{deliveryCancelExceptionNum}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">整体时长：</label>
+                <div class="col-sm-8">
+                    <input name="entiretyTime" th:field="*{entiretyTime}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">接单时长：</label>
+                <div class="col-sm-8">
+                    <input name="takeOrderTime" th:field="*{takeOrderTime}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">到店时长：</label>
+                <div class="col-sm-8">
+                    <input name="toShopTime" th:field="*{toShopTime}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">取餐时长：</label>
+                <div class="col-sm-8">
+                    <input name="getMealTime" th:field="*{getMealTime}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">送达时长：</label>
+                <div class="col-sm-8">
+                    <input name="deliveryTime" th:field="*{deliveryTime}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">商户投诉数：</label>
+                <div class="col-sm-8">
+                    <input name="canteenComplaintNum" th:field="*{canteenComplaintNum}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">用户投诉数：</label>
+                <div class="col-sm-8">
+                    <input name="userComplaintNum" th:field="*{userComplaintNum}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">差评数：</label>
+                <div class="col-sm-8">
+                    <input name="lowCommentNum" th:field="*{lowCommentNum}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">好评数：</label>
+                <div class="col-sm-8">
+                    <input name="highCommentNum" th:field="*{highCommentNum}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">评价数：</label>
+                <div class="col-sm-8">
+                    <input name="commentNum" th:field="*{commentNum}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">最远订单距离：</label>
+                <div class="col-sm-8">
+                    <input name="furthestOrderDistance" th:field="*{furthestOrderDistance}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">该订单整体时效：</label>
+                <div class="col-sm-8">
+                    <input name="furthestOrderAging" th:field="*{furthestOrderAging}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">该订单接单时效：</label>
+                <div class="col-sm-8">
+                    <input name="furthestOrderTakeOrderAging" th:field="*{furthestOrderTakeOrderAging}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">该订单到店时效：</label>
+                <div class="col-sm-8">
+                    <input name="furthestOrderToShopAging" th:field="*{furthestOrderToShopAging}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">该订单取餐时效：</label>
+                <div class="col-sm-8">
+                    <input name="furthestOrderGetMealAging" th:field="*{furthestOrderGetMealAging}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">该订单送达时效：</label>
+                <div class="col-sm-8">
+                    <input name="furthestOrderDeliveryAging" th:field="*{furthestOrderDeliveryAging}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">评价星级：</label>
+                <div class="col-sm-8">
+                    <select name="furthestOrderCommentStar" class="form-control m-b">
+                        <option value="">所有</option>
+                    </select>
+                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+                </div>
+            </div>
+        </form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var prefix = ctx + "system/canteen";
+        $("#form-canteen-edit").validate({
+            focusCleanup: true
+        });
+
+        function submitHandler() {
+            if ($.validate.form()) {
+                $.operate.save(prefix + "/edit", $('#form-canteen-edit').serialize());
+            }
+        }
+    </script>
+</body>
+</html>

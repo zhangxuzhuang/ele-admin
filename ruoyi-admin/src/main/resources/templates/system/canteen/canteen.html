@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('商户数据列表')" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <div class="select-list">
+                        <ul>
+                            <li>
+                                <label>平台餐厅ID：</label>
+                                <input type="text" name="canteenId"/>
+                            </li>
+                            <li>
+                                <label>(配送系统)餐厅ID：</label>
+                                <input type="text" name="retailerId"/>
+                            </li>
+                            <li>
+                                <label>餐厅名称：</label>
+                                <input type="text" name="canteenName"/>
+                            </li>
+                            <li>
+                                <label>商户业务：</label>
+                                <select name="canteenBusType">
+                                    <option value="">所有</option>
+                                    <option value="-1">代码生成请选择字典属性</option>
+                                </select>
+                            </li>
+                            <li>
+                                <label>该订单整体时效：</label>
+                                <input type="text" name="furthestOrderAging"/>
+                            </li>
+                            <li>
+                                <label>评价星级：</label>
+                                <select name="furthestOrderCommentStar">
+                                    <option value="">所有</option>
+<!--                                    <option value="-1">代码生成请选择字典属性</option>-->
+                                </select>
+                            </li>
+                            <li>
+                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+
+<!--            <div class="btn-group-sm" id="toolbar" role="group">-->
+<!--                <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="system:canteen:add">-->
+<!--                    <i class="fa fa-plus"></i> 添加-->
+<!--                </a>-->
+<!--                <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="system:canteen:edit">-->
+<!--                    <i class="fa fa-edit"></i> 修改-->
+<!--                </a>-->
+<!--                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="system:canteen:remove">-->
+<!--                    <i class="fa fa-remove"></i> 删除-->
+<!--                </a>-->
+<!--                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="system:canteen:export">-->
+<!--                    <i class="fa fa-download"></i> 导出-->
+<!--                </a>-->
+<!--            </div>-->
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('system:canteen:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('system:canteen:remove')}]];
+        var prefix = ctx + "system/canteen";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+                exportUrl: prefix + "/export",
+                modalName: "商户数据",
+                method:"get",
+                paginationLoop: false,
+                columns: [{
+                    checkbox: true
+                },
+                {
+                    field: 'id',
+                    title: 'ID',
+                    visible: false
+                },
+                {
+                    field: 'canteenId',
+                    title: '平台餐厅ID'
+                },
+                {
+                    field: 'retailerId',
+                    title: '(配送系统)餐厅ID'
+                },
+                {
+                    field: 'canteenName',
+                    title: '餐厅名称'
+                },
+                {
+                    field: 'city',
+                    title: '城市'
+                },
+                {
+                    field: 'canteenBusType',
+                    title: '商户业务'
+                },
+                {
+                    field: 'deliveryArea',
+                    title: '配送范围'
+                },
+                {
+                    field: 'arpa',
+                    title: '客单价'
+                },
+                {
+                    field: 'pushOrderNum',
+                    title: '平台推单数'
+                },
+                {
+                    field: 'receiveOrderNum',
+                    title: '商家接单数'
+                },
+                {
+                    field: 'validOrderNum',
+                    title: '有效完成单数'
+                },
+                {
+                    field: 'validOrderRate',
+                    title: '有效完成率'
+                },
+                {
+                    field: 'complaintRate',
+                    title: '投诉率'
+                },
+                {
+                    field: 'exceptionRate',
+                    title: '异常率'
+                },
+                {
+                    field: 'shamOrderNum',
+                    title: '欺诈单数'
+                },
+                {
+                    field: 'rejectOrderNum',
+                    title: '拒单数'
+                },
+                {
+                    field: 'canteenCancelNum',
+                    title: '商户取消数'
+                },
+                {
+                    field: 'userCancelNum',
+                    title: '客户取消数'
+                },
+                {
+                    field: 'systemCancelNum',
+                    title: '系统取消数'
+                },
+                {
+                    field: 'deliveryCancelExceptionNum',
+                    title: '配送异常数'
+                },
+                {
+                    field: 'entiretyTime',
+                    title: '整体时长'
+                },
+                {
+                    field: 'takeOrderTime',
+                    title: '接单时长'
+                },
+                {
+                    field: 'toShopTime',
+                    title: '到店时长'
+                },
+                {
+                    field: 'getMealTime',
+                    title: '取餐时长'
+                },
+                {
+                    field: 'deliveryTime',
+                    title: '送达时长'
+                },
+                {
+                    field: 'canteenComplaintNum',
+                    title: '商户投诉数'
+                },
+                {
+                    field: 'userComplaintNum',
+                    title: '用户投诉数'
+                },
+                {
+                    field: 'lowCommentNum',
+                    title: '差评数'
+                },
+                {
+                    field: 'highCommentNum',
+                    title: '好评数'
+                },
+                {
+                    field: 'commentNum',
+                    title: '评价数'
+                },
+                {
+                    field: 'furthestOrderDistance',
+                    title: '最远订单距离'
+                },
+                {
+                    field: 'furthestOrderAging',
+                    title: '该订单整体时效'
+                },
+                {
+                    field: 'furthestOrderTakeOrderAging',
+                    title: '该订单接单时效'
+                },
+                {
+                    field: 'furthestOrderToShopAging',
+                    title: '该订单到店时效'
+                },
+                {
+                    field: 'furthestOrderGetMealAging',
+                    title: '该订单取餐时效'
+                },
+                {
+                    field: 'furthestOrderDeliveryAging',
+                    title: '该订单送达时效'
+                },
+                {
+                    field: 'furthestOrderCommentStar',
+                    title: '评价星级'
+                },
+                // {
+                //     title: '操作',
+                //     align: 'center',
+                //     formatter: function(value, row, index) {
+                //         var actions = [];
+                //         actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                //         actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+                //         return actions.join('');
+                //     }
+                // }
+                ]
+            };
+            $.table.init(options);
+        });
+    </script>
+</body>
+</html>
