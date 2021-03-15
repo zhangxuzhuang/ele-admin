@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.WmGrayDataCompareMapper">
+    
+    <resultMap type="WmGrayDataCompare" id="WmGrayDataCompareResult">
+        <result property="gridId"    column="grid_id"    />
+        <result property="grayCanteenNum"    column="gray_canteen_num"    />
+        <result property="recommendOrderEight"    column="recommend_order_eight"    />
+        <result property="pushOrderNine"    column="push_order_nine"    />
+        <result property="effectiveCompletionRateEight"    column="effective_completion_rate_eight"    />
+        <result property="effectiveCompletionRateNine"    column="effective_completion_rate_nine"    />
+        <result property="timeoutRateEight"    column="timeout_rate_eight"    />
+        <result property="timeoutRateNine"    column="timeout_rate_nine"    />
+    </resultMap>
+
+    <sql id="selectWmGrayDataCompareVo">
+        select grid_id, gray_canteen_num, recommend_order_eight, push_order_nine, effective_completion_rate_eight, effective_completion_rate_nine, timeout_rate_eight, timeout_rate_nine from wm_gray_data_compare
+    </sql>
+
+    <select id="selectWmGrayDataCompareList" parameterType="WmGrayDataCompare" resultMap="WmGrayDataCompareResult">
+        <include refid="selectWmGrayDataCompareVo"/>
+        <where>  
+            <if test="gridId != null "> and grid_id = #{gridId}</if>
+        </where>
+    </select>
+    
+    <select id="selectWmGrayDataCompareById" parameterType="Long" resultMap="WmGrayDataCompareResult">
+        <include refid="selectWmGrayDataCompareVo"/>
+        where grid_id = #{gridId}
+    </select>
+        
+    <insert id="insertWmGrayDataCompare" parameterType="WmGrayDataCompare">
+        insert into wm_gray_data_compare
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="gridId != null">grid_id,</if>
+            <if test="grayCanteenNum != null">gray_canteen_num,</if>
+            <if test="recommendOrderEight != null">recommend_order_eight,</if>
+            <if test="pushOrderNine != null">push_order_nine,</if>
+            <if test="effectiveCompletionRateEight != null">effective_completion_rate_eight,</if>
+            <if test="effectiveCompletionRateNine != null">effective_completion_rate_nine,</if>
+            <if test="timeoutRateEight != null">timeout_rate_eight,</if>
+            <if test="timeoutRateNine != null">timeout_rate_nine,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="gridId != null">#{gridId},</if>
+            <if test="grayCanteenNum != null">#{grayCanteenNum},</if>
+            <if test="recommendOrderEight != null">#{recommendOrderEight},</if>
+            <if test="pushOrderNine != null">#{pushOrderNine},</if>
+            <if test="effectiveCompletionRateEight != null">#{effectiveCompletionRateEight},</if>
+            <if test="effectiveCompletionRateNine != null">#{effectiveCompletionRateNine},</if>
+            <if test="timeoutRateEight != null">#{timeoutRateEight},</if>
+            <if test="timeoutRateNine != null">#{timeoutRateNine},</if>
+         </trim>
+    </insert>
+
+    <update id="updateWmGrayDataCompare" parameterType="WmGrayDataCompare">
+        update wm_gray_data_compare
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="grayCanteenNum != null">gray_canteen_num = #{grayCanteenNum},</if>
+            <if test="recommendOrderEight != null">recommend_order_eight = #{recommendOrderEight},</if>
+            <if test="pushOrderNine != null">push_order_nine = #{pushOrderNine},</if>
+            <if test="effectiveCompletionRateEight != null">effective_completion_rate_eight = #{effectiveCompletionRateEight},</if>
+            <if test="effectiveCompletionRateNine != null">effective_completion_rate_nine = #{effectiveCompletionRateNine},</if>
+            <if test="timeoutRateEight != null">timeout_rate_eight = #{timeoutRateEight},</if>
+            <if test="timeoutRateNine != null">timeout_rate_nine = #{timeoutRateNine},</if>
+        </trim>
+        where grid_id = #{gridId}
+    </update>
+
+    <delete id="deleteWmGrayDataCompareById" parameterType="Long">
+        delete from wm_gray_data_compare where grid_id = #{gridId}
+    </delete>
+
+    <delete id="deleteWmGrayDataCompareByIds" parameterType="String">
+        delete from wm_gray_data_compare where grid_id in 
+        <foreach item="gridId" collection="array" open="(" separator="," close=")">
+            #{gridId}
+        </foreach>
+    </delete>
+
+</mapper>

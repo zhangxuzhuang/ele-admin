@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('新增配送平台灰测维度数据')" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-deliveryGrayData-add">
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">餐厅名称：</label>
+                <div class="col-sm-8">
+                    <input name="canteenName" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">城市：</label>
+                <div class="col-sm-8">
+                    <input name="city" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">营业时长：</label>
+                <div class="col-sm-8">
+                    <input name="businessHours" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">餐厅状态：</label>
+                <div class="col-sm-8">
+                    <div class="radio-box">
+                        <input type="radio" name="status" value="">
+                        <label th:for="status" th:text="未知"></label>
+                    </div>
+                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">是否托管：</label>
+                <div class="col-sm-8">
+                    <input name="trusteeship" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">总单量：</label>
+                <div class="col-sm-8">
+                    <input name="orderQuantity" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">总单量增长率：</label>
+                <div class="col-sm-8">
+                    <input name="orderQuantityGrowthRate" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">有效订单量：</label>
+                <div class="col-sm-8">
+                    <input name="effectiveOrderQuantity" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">有效订单增长率：</label>
+                <div class="col-sm-8">
+                    <input name="effectiveOrderGrowthRate" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">订单配送成功率：</label>
+                <div class="col-sm-8">
+                    <input name="orderDeliverySuccessRate" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">超时订单率：</label>
+                <div class="col-sm-8">
+                    <input name="overtimeOrderRate" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">无效订单率：</label>
+                <div class="col-sm-8">
+                    <input name="invalidOrderRate" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">平均预计送达时长：</label>
+                <div class="col-sm-8">
+                    <input name="averageExpectedDeliveryTime" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">平均实际配送时长：</label>
+                <div class="col-sm-8">
+                    <input name="averageActualDeliveryTime" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">当前配送面积：</label>
+                <div class="col-sm-8">
+                    <input name="currentDistributionArea" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">面积变更值：</label>
+                <div class="col-sm-8">
+                    <input name="areaChangeValue" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">网格ID：</label>
+                <div class="col-sm-8">
+                    <input name="gridId" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">网格名称：</label>
+                <div class="col-sm-8">
+                    <input name="gridName" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">战营：</label>
+                <div class="col-sm-8">
+                    <input name="battleCamp" class="form-control" type="text">
+                </div>
+            </div>
+        </form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var prefix = ctx + "system/deliveryGrayData"
+        $("#form-deliveryGrayData-add").validate({
+            focusCleanup: true
+        });
+
+        function submitHandler() {
+            if ($.validate.form()) {
+                $.operate.save(prefix + "/add", $('#form-deliveryGrayData-add').serialize());
+            }
+        }
+    </script>
+</body>
+</html>

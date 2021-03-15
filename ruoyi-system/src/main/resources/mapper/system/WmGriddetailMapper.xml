@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.WmGriddetailMapper">
+    
+    <resultMap type="WmGriddetail" id="WmGriddetailResult">
+        <result property="id"    column="id"    />
+        <result property="gridId"    column="grid_id"    />
+        <result property="gridName"    column="grid_name"    />
+        <result property="city"    column="city"    />
+        <result property="canteenId"    column="canteen_id"    />
+        <result property="last7OrderNum"    column="last_7_order_num"    />
+        <result property="last7PushOrderNum"    column="last_7_push_order_num"    />
+        <result property="canteenName"    column="canteen_name"    />
+        <result property="canteenNameAddress"    column="canteen_name_address"    />
+        <result property="minosAddress"    column="minos_address"    />
+        <result property="foodType"    column="food_type"    />
+        <result property="canteenType"    column="canteen_type"    />
+        <result property="productType"    column="product_type"    />
+        <result property="pushType"    column="push_type"    />
+    </resultMap>
+
+    <sql id="selectWmGriddetailVo">
+        select id, grid_id, grid_name, city, canteen_id, last_7_order_num, last_7_push_order_num, canteen_name, canteen_name_address, minos_address, food_type, canteen_type, product_type, push_type from wm_grid_detail
+    </sql>
+
+    <select id="selectWmGriddetailList" parameterType="WmGriddetail" resultMap="WmGriddetailResult">
+        <include refid="selectWmGriddetailVo"/>
+        <where>  
+            <if test="gridId != null "> and grid_id = #{gridId}</if>
+            <if test="gridName != null  and gridName != ''"> and grid_name like concat('%', #{gridName}, '%')</if>
+            <if test="canteenId != null "> and canteen_id = #{canteenId}</if>
+            <if test="canteenName != null  and canteenName != ''"> and canteen_name like concat('%', #{canteenName}, '%')</if>
+            <if test="canteenNameAddress != null  and canteenNameAddress != ''"> and canteen_name_address like concat('%', #{canteenNameAddress}, '%')</if>
+            <if test="minosAddress != null  and minosAddress != ''"> and minos_address like concat('%', #{minosAddress}, '%')</if>
+            <if test="foodType != null  and foodType != ''"> and food_type = #{foodType}</if>
+            <if test="canteenType != null "> and canteen_type = #{canteenType}</if>
+            <if test="productType != null  and productType != ''"> and product_type = #{productType}</if>
+            <if test="pushType != null "> and push_type = #{pushType}</if>
+        </where>
+    </select>
+    
+    <select id="selectWmGriddetailById" parameterType="Long" resultMap="WmGriddetailResult">
+        <include refid="selectWmGriddetailVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertWmGriddetail" parameterType="WmGriddetail" useGeneratedKeys="true" keyProperty="id">
+        insert into wm_grid_detail
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="gridId != null">grid_id,</if>
+            <if test="gridName != null">grid_name,</if>
+            <if test="city != null">city,</if>
+            <if test="canteenId != null">canteen_id,</if>
+            <if test="last7OrderNum != null">last_7_order_num,</if>
+            <if test="last7PushOrderNum != null">last_7_push_order_num,</if>
+            <if test="canteenName != null">canteen_name,</if>
+            <if test="canteenNameAddress != null">canteen_name_address,</if>
+            <if test="minosAddress != null">minos_address,</if>
+            <if test="foodType != null">food_type,</if>
+            <if test="canteenType != null">canteen_type,</if>
+            <if test="productType != null">product_type,</if>
+            <if test="pushType != null">push_type,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="gridId != null">#{gridId},</if>
+            <if test="gridName != null">#{gridName},</if>
+            <if test="city != null">#{city},</if>
+            <if test="canteenId != null">#{canteenId},</if>
+            <if test="last7OrderNum != null">#{last7OrderNum},</if>
+            <if test="last7PushOrderNum != null">#{last7PushOrderNum},</if>
+            <if test="canteenName != null">#{canteenName},</if>
+            <if test="canteenNameAddress != null">#{canteenNameAddress},</if>
+            <if test="minosAddress != null">#{minosAddress},</if>
+            <if test="foodType != null">#{foodType},</if>
+            <if test="canteenType != null">#{canteenType},</if>
+            <if test="productType != null">#{productType},</if>
+            <if test="pushType != null">#{pushType},</if>
+         </trim>
+    </insert>
+
+    <update id="updateWmGriddetail" parameterType="WmGriddetail">
+        update wm_grid_detail
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="gridId != null">grid_id = #{gridId},</if>
+            <if test="gridName != null">grid_name = #{gridName},</if>
+            <if test="city != null">city = #{city},</if>
+            <if test="canteenId != null">canteen_id = #{canteenId},</if>
+            <if test="last7OrderNum != null">last_7_order_num = #{last7OrderNum},</if>
+            <if test="last7PushOrderNum != null">last_7_push_order_num = #{last7PushOrderNum},</if>
+            <if test="canteenName != null">canteen_name = #{canteenName},</if>
+            <if test="canteenNameAddress != null">canteen_name_address = #{canteenNameAddress},</if>
+            <if test="minosAddress != null">minos_address = #{minosAddress},</if>
+            <if test="foodType != null">food_type = #{foodType},</if>
+            <if test="canteenType != null">canteen_type = #{canteenType},</if>
+            <if test="productType != null">product_type = #{productType},</if>
+            <if test="pushType != null">push_type = #{pushType},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteWmGriddetailById" parameterType="Long">
+        delete from wm_grid_detail where id = #{id}
+    </delete>
+
+    <delete id="deleteWmGriddetailByIds" parameterType="String">
+        delete from wm_grid_detail where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

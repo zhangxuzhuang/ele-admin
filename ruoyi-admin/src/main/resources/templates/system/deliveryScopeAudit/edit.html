@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('修改配送范围审核-人员预算')" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-deliveryScopeAudit-edit" th:object="${wmDeliveryScopeAudit}">
+            <input name="id" th:field="*{id}" type="hidden">
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">请求ID：</label>
+                <div class="col-sm-8">
+                    <input name="requestId" th:field="*{requestId}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">：</label>
+                <div class="col-sm-8">
+                    <input name="walleId" th:field="*{walleId}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">：</label>
+                <div class="col-sm-8">
+                    <input name="retailerId" th:field="*{retailerId}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">商铺名称：</label>
+                <div class="col-sm-8">
+                    <input name="retailerName" th:field="*{retailerName}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">商铺地址：</label>
+                <div class="col-sm-8">
+                    <input name="retailerAddress" th:field="*{retailerAddress}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">位置POI编码：</label>
+                <div class="col-sm-8">
+                    <input name="retailerLocation" th:field="*{retailerLocation}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">城市ID：</label>
+                <div class="col-sm-8">
+                    <input name="cityId" th:field="*{cityId}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">城市名称：</label>
+                <div class="col-sm-8">
+                    <input name="cityName" th:field="*{cityName}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">网格ID：</label>
+                <div class="col-sm-8">
+                    <input name="gridId" th:field="*{gridId}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">渠道经理：</label>
+                <div class="col-sm-8">
+                    <input name="carrierId" th:field="*{carrierId}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">渠道小组：</label>
+                <div class="col-sm-8">
+                    <input name="teamId" th:field="*{teamId}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">申请人id：</label>
+                <div class="col-sm-8">
+                    <input name="applicantId" th:field="*{applicantId}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">申请人：</label>
+                <div class="col-sm-8">
+                    <input name="applicantName" th:field="*{applicantName}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">一级审批角色：</label>
+                <div class="col-sm-8">
+                    <input name="firstAuditorRole" th:field="*{firstAuditorRole}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">候选审批人ID：</label>
+                <div class="col-sm-8">
+                    <input name="firstAuditorCandidateIds" th:field="*{firstAuditorCandidateIds}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">审核人ID：</label>
+                <div class="col-sm-8">
+                    <input name="firstAuditorId" th:field="*{firstAuditorId}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">审批人名：</label>
+                <div class="col-sm-8">
+                    <input name="firstAuditorName" th:field="*{firstAuditorName}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">二级审批角色：</label>
+                <div class="col-sm-8">
+                    <input name="secondAuditorRole" th:field="*{secondAuditorRole}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">审核小组成员：</label>
+                <div class="col-sm-8">
+                    <input name="secondAuditorCandidateIds" th:field="*{secondAuditorCandidateIds}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">二级审核人id：</label>
+                <div class="col-sm-8">
+                    <input name="secondAuditorId" th:field="*{secondAuditorId}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">二级审核人名：</label>
+                <div class="col-sm-8">
+                    <input name="secondAuditorName" th:field="*{secondAuditorName}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">审核状态：</label>
+                <div class="col-sm-8">
+                    <div class="radio-box">
+                        <input type="radio" name="status" value="">
+                        <label th:for="status" th:text="未知"></label>
+                    </div>
+                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">申请前最大配送距离：</label>
+                <div class="col-sm-8">
+                    <input name="maxDistanceBeforeEdit" th:field="*{maxDistanceBeforeEdit}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">申请前最小配送距离：</label>
+                <div class="col-sm-8">
+                    <input name="minDistanceBeforeEdit" th:field="*{minDistanceBeforeEdit}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">申请后最大配送距离：</label>
+                <div class="col-sm-8">
+                    <input name="maxDistanceAfterEdit" th:field="*{maxDistanceAfterEdit}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">申请后最小配送距离：</label>
+                <div class="col-sm-8">
+                    <input name="minDistanceAfterEdit" th:field="*{minDistanceAfterEdit}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">申请前配送面积：</label>
+                <div class="col-sm-8">
+                    <input name="areaBeforeEdit" th:field="*{areaBeforeEdit}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">申请前配送面积：</label>
+                <div class="col-sm-8">
+                    <input name="areaAfterEdit" th:field="*{areaAfterEdit}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">申请递交时间：</label>
+                <div class="col-sm-8">
+                    <input name="createdAt" th:field="*{createdAt}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">审核完成：</label>
+                <div class="col-sm-8">
+                    <input name="updatedAt" th:field="*{updatedAt}" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">申请时间：</label>
+                <div class="col-sm-8">
+                    <input name="applyTime" th:field="*{applyTime}" class="form-control" type="text">
+                </div>
+            </div>
+        </form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var prefix = ctx + "system/deliveryScopeAudit";
+        $("#form-deliveryScopeAudit-edit").validate({
+            focusCleanup: true
+        });
+
+        function submitHandler() {
+            if ($.validate.form()) {
+                $.operate.save(prefix + "/edit", $('#form-deliveryScopeAudit-edit').serialize());
+            }
+        }
+    </script>
+</body>
+</html>

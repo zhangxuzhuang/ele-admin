@@ -46,9 +46,9 @@ public class WmPoiController extends BaseController {
     @ResponseBody
     public TableDataInfo list(@RequestBody WmPoi wmPoi) {
         //startPage();
-        Integer pageNum = wmPoi.getPageNum();
-        Integer pageSize = wmPoi.getPageSize();
-        PageHelper.startPage(pageNum, pageSize);
+//        Integer pageNum = wmPoi.getPageNum();
+//        Integer pageSize = wmPoi.getPageSize();
+        //PageHelper.startPage(pageNum, pageSize);
         List<WmPoi> list = wmPoiService.selectWmPoiList(wmPoi);
         TableDataInfo dataTable = getDataTable(list);
         long total = dataTable.getTotal();

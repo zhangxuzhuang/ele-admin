@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('灰度数据对比列表')" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <div class="select-list">
+                        <ul>
+                            <li>
+                                <label>网格ID：</label>
+                                <input type="text" name="gridId"/>
+                            </li>
+                            <li>
+                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+
+
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('system:grayDataCompare:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('system:grayDataCompare:remove')}]];
+        var prefix = ctx + "system/grayDataCompare";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+                exportUrl: prefix + "/export",
+                modalName: "灰度数据对比",
+                columns: [{
+                    checkbox: true
+                },
+                {
+                    field: 'gridId',
+                    title: '网格ID',
+                    visible: false
+                },
+                {
+                    field: 'grayCanteenNum',
+                    title: '灰度餐厅数量'
+                },
+                {
+                    field: 'recommendOrderEight',
+                    title: '推单数-8日'
+                },
+                {
+                    field: 'pushOrderNine',
+                    title: '推单数-9日'
+                },
+                {
+                    field: 'effectiveCompletionRateEight',
+                    title: '有效完成率-8日'
+                },
+                {
+                    field: 'effectiveCompletionRateNine',
+                    title: '有效完成率-9日'
+                },
+                {
+                    field: 'timeoutRateEight',
+                    title: '超时率-8日'
+                },
+                {
+                    field: 'timeoutRateNine',
+                    title: '超时率-9日'
+                },
+               ]
+            };
+            $.table.init(options);
+        });
+    </script>
+</body>
+</html>

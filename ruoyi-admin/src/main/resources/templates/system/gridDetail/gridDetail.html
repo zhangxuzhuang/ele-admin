@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('网格餐厅明细列表')" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <div class="select-list">
+                        <ul>
+                            <li>
+                                <label>网格ID：</label>
+                                <input type="text" name="gridId"/>
+                            </li>
+                            <li>
+                                <label>餐厅ID：</label>
+                                <input type="text" name="canteenId"/>
+                            </li>
+                            <li>
+                                <label>餐品种类：</label>
+                                <select name="foodType">
+                                    <option value="">所有</option>
+                                    <option value="-1">待配置</option>
+                                </select>
+                            </li>
+                            <li>
+                                <label>餐厅属性：</label>
+                                <select name="canteenType">
+                                    <option value="">所有</option>
+                                    <option value="-1">待配置</option>
+                                </select>
+                            </li>
+                            <li>
+                                <label>标属品性：</label>
+                                <select name="productType">
+                                    <option value="">所有</option>
+                                    <option value="-1">待配置</option>
+                                </select>
+                            </li>
+                            <li>
+                                <label>推送类型：</label>
+                                <select name="pushType">
+                                    <option value="">所有</option>
+                                    <option value="-1">待配置</option>
+                                </select>
+                            </li>
+                            <li>
+                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('system:gridDetail:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('system:gridDetail:remove')}]];
+        var prefix = ctx + "system/gridDetail";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+                exportUrl: prefix + "/export",
+                modalName: "网格餐厅明细",
+                columns: [{
+                    checkbox: true
+                },
+                {
+                    field: 'id',
+                    title: 'ID',
+                    visible: false
+                },
+                {
+                    field: 'gridId',
+                    title: '网格ID'
+                },
+                {
+                    field: 'gridName',
+                    title: '网格名称'
+                },
+                {
+                    field: 'city',
+                    title: '城市'
+                },
+                {
+                    field: 'canteenId',
+                    title: '餐厅ID'
+                },
+                {
+                    field: 'last7OrderNum',
+                    title: '近7天平台单量'
+                },
+                {
+                    field: 'last7PushOrderNum',
+                    title: '近7天推单'
+                },
+                {
+                    field: 'canteenName',
+                    title: '餐厅名'
+                },
+                {
+                    field: 'canteenNameAddress',
+                    title: '餐厅地址'
+                },
+                {
+                    field: 'minosAddress',
+                    title: 'minos地址'
+                },
+                {
+                    field: 'foodType',
+                    title: '餐品种类'
+                },
+                {
+                    field: 'canteenType',
+                    title: '餐厅属性'
+                },
+                {
+                    field: 'productType',
+                    title: '标属品性'
+                },
+                {
+                    field: 'pushType',
+                    title: '推送类型'
+                },
+                ]
+            };
+            $.table.init(options);
+        });
+    </script>
+</body>
+</html>

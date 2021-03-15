@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('配送平台灰测维度数据列表')" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <div class="select-list">
+                        <ul>
+                            <li>
+                                <label>餐厅ID：</label>
+                                <input type="text" name="canteenId"/>
+                            </li>
+                            <li>
+                                <label>餐厅名称：</label>
+                                <input type="text" name="canteenName"/>
+                            </li>
+                            <li>
+                                <label>网格ID：</label>
+                                <input type="text" name="gridId"/>
+                            </li>
+                            <li>
+                                <label>网格名称：</label>
+                                <input type="text" name="gridName"/>
+                            </li>
+                            <li>
+                                <label>战营：</label>
+                                <input type="text" name="battleCamp"/>
+                            </li>
+                            <li>
+                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('system:deliveryGrayData:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('system:deliveryGrayData:remove')}]];
+        var prefix = ctx + "system/deliveryGrayData";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+                exportUrl: prefix + "/export",
+                modalName: "配送平台灰测维度数据",
+                columns: [{
+                    checkbox: true
+                },
+                {
+                    field: 'canteenId',
+                    title: '餐厅ID',
+                    visible: false
+                },
+                {
+                    field: 'canteenName',
+                    title: '餐厅名称'
+                },
+                {
+                    field: 'city',
+                    title: '城市'
+                },
+                {
+                    field: 'businessHours',
+                    title: '营业时长'
+                },
+                {
+                    field: 'status',
+                    title: '餐厅状态'
+                },
+                {
+                    field: 'trusteeship',
+                    title: '是否托管'
+                },
+                {
+                    field: 'orderQuantity',
+                    title: '总单量'
+                },
+                {
+                    field: 'orderQuantityGrowthRate',
+                    title: '总单量增长率'
+                },
+                {
+                    field: 'effectiveOrderQuantity',
+                    title: '有效订单量'
+                },
+                {
+                    field: 'effectiveOrderGrowthRate',
+                    title: '有效订单增长率'
+                },
+                {
+                    field: 'orderDeliverySuccessRate',
+                    title: '订单配送成功率'
+                },
+                {
+                    field: 'overtimeOrderRate',
+                    title: '超时订单率'
+                },
+                {
+                    field: 'invalidOrderRate',
+                    title: '无效订单率'
+                },
+                {
+                    field: 'averageExpectedDeliveryTime',
+                    title: '平均预计送达时长'
+                },
+                {
+                    field: 'averageActualDeliveryTime',
+                    title: '平均实际配送时长'
+                },
+                {
+                    field: 'currentDistributionArea',
+                    title: '当前配送面积'
+                },
+                {
+                    field: 'areaChangeValue',
+                    title: '面积变更值'
+                },
+                {
+                    field: 'gridId',
+                    title: '网格ID'
+                },
+                {
+                    field: 'gridName',
+                    title: '网格名称'
+                },
+                {
+                    field: 'battleCamp',
+                    title: '战营'
+                },
+                ]
+            };
+            $.table.init(options);
+        });
+    </script>
+</body>
+</html>

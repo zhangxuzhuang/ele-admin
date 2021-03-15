@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.WmDeliveryGrayDataMapper">
+    
+    <resultMap type="WmDeliveryGrayData" id="WmDeliveryGrayDataResult">
+        <result property="canteenId"    column="canteen_id"    />
+        <result property="canteenName"    column="canteen_name"    />
+        <result property="city"    column="city"    />
+        <result property="businessHours"    column="business_hours"    />
+        <result property="status"    column="status"    />
+        <result property="trusteeship"    column="trusteeship"    />
+        <result property="orderQuantity"    column="order_quantity"    />
+        <result property="orderQuantityGrowthRate"    column="order_quantity_growth_rate"    />
+        <result property="effectiveOrderQuantity"    column="effective_order_quantity"    />
+        <result property="effectiveOrderGrowthRate"    column="effective_order_growth_rate"    />
+        <result property="orderDeliverySuccessRate"    column="order_delivery_success_rate"    />
+        <result property="overtimeOrderRate"    column="overtime_order_rate"    />
+        <result property="invalidOrderRate"    column="invalid_order_rate"    />
+        <result property="averageExpectedDeliveryTime"    column="average_expected_delivery_time"    />
+        <result property="averageActualDeliveryTime"    column="average_actual_delivery_time"    />
+        <result property="currentDistributionArea"    column="current_distribution_area"    />
+        <result property="areaChangeValue"    column="area_change_value"    />
+        <result property="gridId"    column="grid_id"    />
+        <result property="gridName"    column="grid_name"    />
+        <result property="battleCamp"    column="battle_camp"    />
+    </resultMap>
+
+    <sql id="selectWmDeliveryGrayDataVo">
+        select canteen_id, canteen_name, city, business_hours, status, trusteeship, order_quantity, order_quantity_growth_rate, effective_order_quantity, effective_order_growth_rate, order_delivery_success_rate, overtime_order_rate, invalid_order_rate, average_expected_delivery_time, average_actual_delivery_time, current_distribution_area, area_change_value, grid_id, grid_name, battle_camp from wm_delivery_gray_data
+    </sql>
+
+    <select id="selectWmDeliveryGrayDataList" parameterType="WmDeliveryGrayData" resultMap="WmDeliveryGrayDataResult">
+        <include refid="selectWmDeliveryGrayDataVo"/>
+        <where>  
+            <if test="canteenId != null "> and canteen_id = #{canteenId}</if>
+            <if test="canteenName != null  and canteenName != ''"> and canteen_name like concat('%', #{canteenName}, '%')</if>
+            <if test="gridId != null "> and grid_id like concat('%', #{gridId}, '%')</if>
+            <if test="gridName != null  and gridName != ''"> and grid_name like concat('%', #{gridName}, '%')</if>
+            <if test="battleCamp != null  and battleCamp != ''"> and battle_camp like concat('%', #{battleCamp}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectWmDeliveryGrayDataById" parameterType="Long" resultMap="WmDeliveryGrayDataResult">
+        <include refid="selectWmDeliveryGrayDataVo"/>
+        where canteen_id = #{canteenId}
+    </select>
+        
+    <insert id="insertWmDeliveryGrayData" parameterType="WmDeliveryGrayData">
+        insert into wm_delivery_gray_data
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="canteenId != null">canteen_id,</if>
+            <if test="canteenName != null">canteen_name,</if>
+            <if test="city != null">city,</if>
+            <if test="businessHours != null">business_hours,</if>
+            <if test="status != null">status,</if>
+            <if test="trusteeship != null">trusteeship,</if>
+            <if test="orderQuantity != null">order_quantity,</if>
+            <if test="orderQuantityGrowthRate != null">order_quantity_growth_rate,</if>
+            <if test="effectiveOrderQuantity != null">effective_order_quantity,</if>
+            <if test="effectiveOrderGrowthRate != null">effective_order_growth_rate,</if>
+            <if test="orderDeliverySuccessRate != null">order_delivery_success_rate,</if>
+            <if test="overtimeOrderRate != null">overtime_order_rate,</if>
+            <if test="invalidOrderRate != null">invalid_order_rate,</if>
+            <if test="averageExpectedDeliveryTime != null">average_expected_delivery_time,</if>
+            <if test="averageActualDeliveryTime != null">average_actual_delivery_time,</if>
+            <if test="currentDistributionArea != null">current_distribution_area,</if>
+            <if test="areaChangeValue != null">area_change_value,</if>
+            <if test="gridId != null">grid_id,</if>
+            <if test="gridName != null">grid_name,</if>
+            <if test="battleCamp != null">battle_camp,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="canteenId != null">#{canteenId},</if>
+            <if test="canteenName != null">#{canteenName},</if>
+            <if test="city != null">#{city},</if>
+            <if test="businessHours != null">#{businessHours},</if>
+            <if test="status != null">#{status},</if>
+            <if test="trusteeship != null">#{trusteeship},</if>
+            <if test="orderQuantity != null">#{orderQuantity},</if>
+            <if test="orderQuantityGrowthRate != null">#{orderQuantityGrowthRate},</if>
+            <if test="effectiveOrderQuantity != null">#{effectiveOrderQuantity},</if>
+            <if test="effectiveOrderGrowthRate != null">#{effectiveOrderGrowthRate},</if>
+            <if test="orderDeliverySuccessRate != null">#{orderDeliverySuccessRate},</if>
+            <if test="overtimeOrderRate != null">#{overtimeOrderRate},</if>
+            <if test="invalidOrderRate != null">#{invalidOrderRate},</if>
+            <if test="averageExpectedDeliveryTime != null">#{averageExpectedDeliveryTime},</if>
+            <if test="averageActualDeliveryTime != null">#{averageActualDeliveryTime},</if>
+            <if test="currentDistributionArea != null">#{currentDistributionArea},</if>
+            <if test="areaChangeValue != null">#{areaChangeValue},</if>
+            <if test="gridId != null">#{gridId},</if>
+            <if test="gridName != null">#{gridName},</if>
+            <if test="battleCamp != null">#{battleCamp},</if>
+         </trim>
+    </insert>
+
+    <update id="updateWmDeliveryGrayData" parameterType="WmDeliveryGrayData">
+        update wm_delivery_gray_data
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="canteenName != null">canteen_name = #{canteenName},</if>
+            <if test="city != null">city = #{city},</if>
+            <if test="businessHours != null">business_hours = #{businessHours},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="trusteeship != null">trusteeship = #{trusteeship},</if>
+            <if test="orderQuantity != null">order_quantity = #{orderQuantity},</if>
+            <if test="orderQuantityGrowthRate != null">order_quantity_growth_rate = #{orderQuantityGrowthRate},</if>
+            <if test="effectiveOrderQuantity != null">effective_order_quantity = #{effectiveOrderQuantity},</if>
+            <if test="effectiveOrderGrowthRate != null">effective_order_growth_rate = #{effectiveOrderGrowthRate},</if>
+            <if test="orderDeliverySuccessRate != null">order_delivery_success_rate = #{orderDeliverySuccessRate},</if>
+            <if test="overtimeOrderRate != null">overtime_order_rate = #{overtimeOrderRate},</if>
+            <if test="invalidOrderRate != null">invalid_order_rate = #{invalidOrderRate},</if>
+            <if test="averageExpectedDeliveryTime != null">average_expected_delivery_time = #{averageExpectedDeliveryTime},</if>
+            <if test="averageActualDeliveryTime != null">average_actual_delivery_time = #{averageActualDeliveryTime},</if>
+            <if test="currentDistributionArea != null">current_distribution_area = #{currentDistributionArea},</if>
+            <if test="areaChangeValue != null">area_change_value = #{areaChangeValue},</if>
+            <if test="gridId != null">grid_id = #{gridId},</if>
+            <if test="gridName != null">grid_name = #{gridName},</if>
+            <if test="battleCamp != null">battle_camp = #{battleCamp},</if>
+        </trim>
+        where canteen_id = #{canteenId}
+    </update>
+
+    <delete id="deleteWmDeliveryGrayDataById" parameterType="Long">
+        delete from wm_delivery_gray_data where canteen_id = #{canteenId}
+    </delete>
+
+    <delete id="deleteWmDeliveryGrayDataByIds" parameterType="String">
+        delete from wm_delivery_gray_data where canteen_id in 
+        <foreach item="canteenId" collection="array" open="(" separator="," close=")">
+            #{canteenId}
+        </foreach>
+    </delete>
+
+</mapper>
