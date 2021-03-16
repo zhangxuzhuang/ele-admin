@@ -31,9 +31,11 @@ server:
 
 # 日志配置
 logging:
+  path: 'logs/xs/logs/xiaoxian/buyer-api'
+  file: 'ele-admin'
   level:
-    com.ruoyi: debug
-    org.springframework: warn
+    root: INFO
+    org.springframework.web: INFO
 
 # 用户配置
 user:
