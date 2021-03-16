@@ -37,15 +37,12 @@
                     <h4 class="no-margins">登录：</h4>
                     <input type="text"     name="username" class="form-control uname"     placeholder="用户名" value=""    />
                     <input type="password" name="password" class="form-control pword"     placeholder="密码"   value="" />
-					<div class="row m-t" th:if="${captchaEnabled==true}">
-						<div class="col-xs-6">
-						    <input type="text" name="validateCode" class="form-control code" placeholder="验证码" maxlength="5" />
-						</div>
-						<div class="col-xs-6">
-							<a href="javascript:void(0);" title="点击更换验证码">
-								<img th:src="@{captcha/captchaImage(type=${captchaType})}" class="imgcode" width="85%"/>
-							</a>
-						</div>
+					<div class="row m-t">
+						<div class="drag">
+                        <div class="bg"></div>
+                        <div class="text" onselectstart="return false;">请拖动滑块解锁</div>
+                        <div class="btn">&gt;&gt;</div>
+                    </div>
 					</div>
                     <div class="checkbox-custom" th:classappend="${captchaEnabled==false} ? 'm-t'">
 				        <input type="checkbox" id="rememberme" name="rememberme"> <label for="rememberme">记住我</label>
